@@ -1,4 +1,4 @@
-import abi from './abis/src/contracts/Adulam.sol/Adulam.json'
+import abi from './abis/src/contracts/Freedom721.sol/Freedom721.json'
 import address from './abis/contractAddress.json'
 import { getGlobalState, setGlobalState } from './store'
 import { ethers } from 'ethers'
@@ -6,34 +6,26 @@ import { ethers } from 'ethers'
 const { ethereum } = window
 const contractAddress = address.address
 const contractAbi = abi.abi
-const opensea_uri = `https://testnets.opensea.io/assets/goerli/${contractAddress}/`
 
-const getEtheriumContract = () => {
+const getEthereumContract = () => {
   const connectedAccount = getGlobalState('connectedAccount')
+  if (!connectedAccount) return null
 
-  if (connectedAccount) {
-    const provider = new ethers.providers.Web3Provider(ethereum)
-    const signer = provider.getSigner()
-    const contract = new ethers.Contract(contractAddress, contractAbi, signer)
-
-    return contract
-  } else {
-    return getGlobalState('contract')
-  }
+  const provider = new ethers.providers.Web3Provider(ethereum)
+  const signer = provider.getSigner()
+  return new ethers.Contract(contractAddress, contractAbi, signer)
 }
 
-const isWallectConnected = async () => {
+const isWalletConnected = async () => {
   try {
     if (!ethereum) return alert('Please install Metamask')
     const accounts = await ethereum.request({ method: 'eth_accounts' })
 
-    window.ethereum.on('chainChanged', (chainId) => {
-      window.location.reload()
-    })
+    window.ethereum.on('chainChanged', () => window.location.reload())
 
     window.ethereum.on('accountsChanged', async () => {
       setGlobalState('connectedAccount', accounts[0])
-      await isWallectConnected()
+      await isWalletConnected()
     })
 
     if (accounts.length) {
@@ -57,57 +49,48 @@ const connectWallet = async () => {
   }
 }
 
-const payToMint = async () => {
-  try {
-    if (!ethereum) return alert('Please install Metamask')
-    const connectedAccount = getGlobalState('connectedAccount')
-    const contract = getEtheriumContract()
-    const amount = ethers.utils.parseEther('0.001')
-
-    await contract.payToMint({
-      from: connectedAccount,
-      value: amount._hex,
-    })
-
-    window.location.reload()
-  } catch (error) {
-    reportError(error)
-  }
-}
-
+// NUEVA función: cargar NFTs uno por uno
 const loadNfts = async () => {
   try {
-    if (!ethereum) return alert('Please install Metamask')
+    const contract = getEthereumContract()
+    if (!contract) return
 
-    const contract = getEtheriumContract()
-    const nfts = await contract.getAllNFTs()
+    const nfts = []
+    const MAX_SUPPLY = 20 // ajusta al total que quieras recorrer
 
-    setGlobalState('nfts', structuredNfts(nfts))
+    for (let i = 0; i < MAX_SUPPLY; i++) {
+      try {
+        const tokenURI = await contract.tokenURI(i)
+        const url = tokenURI.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/')
+        const res = await fetch(url)
+        const metadata = await res.json()
+
+        nfts.push({
+          id: i,
+          name: metadata.name,
+          description: metadata.description,
+          image: metadata.image.replace('ipfs://', 'https://gateway.pinata.cloud/ipfs/')
+        })
+      } catch (err) {
+        console.log(`🔍 Token ${i} no encontrado aún`)
+      }
+    }
+
+    setGlobalState('nfts', nfts.reverse())
   } catch (error) {
     reportError(error)
   }
 }
+
+// Eliminamos payToMint porque tu contrato usa mintNFT() directamente
 
 const reportError = (error) => {
   console.log(error.message)
   throw new Error('No ethereum object.')
 }
 
-const structuredNfts = (nfts) =>
-  nfts
-    .map((nft) => ({
-      id: Number(nft.id),
-      url: opensea_uri + nft.id,
-      buyer: nft.buyer,
-      imageURL: nft.imageURL,
-      cost: parseInt(nft.cost._hex) / 10 ** 18,
-      timestamp: new Date(nft.timestamp.toNumber()).getTime(),
-    }))
-    .reverse()
-
-export { 
-  isWallectConnected, 
-  connectWallet, 
-  payToMint, 
-  loadNfts 
+export {
+  isWalletConnected,
+  connectWallet,
+  loadNfts
 }

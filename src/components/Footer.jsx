@@ -7,18 +7,12 @@ const Footer = () => (
         <p className="text-white text-base text-center mx-2 cursor-pointer">
           Explore
         </p>
-        <p className="text-white text-base text-center mx-2 cursor-pointer">
-          Features
-        </p>
-        <p className="text-white text-base text-center mx-2 cursor-pointer">
-          Community
-        </p>
       </div>
 
       <div className="flex flex-row justify-center items-center mt-2">
         <img src={ethlogo} alt="logo" className="w-8" />
         <span className="text-white text-xs">
-          Adulam © 2016 - 2022 With Love ❤️ Daltonic
+          AetherArt © 2025. All rights reserved.
         </span>
       </div>
     </div>

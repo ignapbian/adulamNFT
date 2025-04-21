@@ -9,7 +9,7 @@ const Header = () => {
     <nav className="w-4/5 flex md:justify-center justify-between items-center py-4 mx-auto">
       <div className="flex flex-row justify-start items-center md:flex-[0.5] flex-initial">
         <img className="w-8 cursor-pointer" src={ethlogo} alt="Adulam Logo" />
-        <span className="text-white text-2xl ml-2">Adulam</span>
+        <span className="text-white text-2xl ml-2">AetherArt</span>
       </div>
 
       <ul
@@ -17,9 +17,7 @@ const Header = () => {
         md:flex hidden list-none flex-row 
         justify-between items-center flex-initial"
       >
-        <li className="mx-4 cursor-pointer">Explore</li>
-        <li className="mx-4 cursor-pointer">Features</li>
-        <li className="mx-4 cursor-pointer">Community</li>
+        <li className="mx-4 cursor-pointer" href="#nfts">Explore</li>
       </ul>
 
       {connectedAccount ? (

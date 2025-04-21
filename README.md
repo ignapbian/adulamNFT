@@ -28,8 +28,8 @@ To run the demo follow these steps:
     ```sh
 
     # Make sure you have the above prerequisites installed already!
-    git clone https://github.com/Daltonic/adulamNFT adulamNFT
-    cd adulamNFT # Navigate to the new folder.
+    git clone https://github.com/Daltonic/AdulamNFT AdulamNFT
+    cd AdulamNFT # Navigate to the new folder.
     yarn install # Installs all the dependencies.
     ```
 2. Create an Alchemy project, copy and paste your key in the spaces below.
@@ -43,7 +43,7 @@ To run the demo follow these steps:
 
 If your confuse about the installation, check out this **TUTORIAL** to see how you should run it.
 
-Questions about running the demo? [Open an issue](https://github.com/Daltonic/adulamNFT/issues). We're here to help ✌️
+Questions about running the demo? [Open an issue](https://github.com/Daltonic/AdulamNFT/issues). We're here to help ✌️
 
 ## Useful links
 
@@ -56,4 +56,4 @@ Questions about running the demo? [Open an issue](https://github.com/Daltonic/ad
 - 🐻 [Solidity](https://soliditylang.org/)
 - 👀 [Ethersjs](https://docs.ethers.io/v5/)
 - 🎅 [Faucet](https://faucets.chain.link/rinkeby)
-- ✨ [Live Demo](https://adulam-nft.web.app/)
+- ✨ [Live Demo](https://Adulam-nft.web.app/)
