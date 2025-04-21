@@ -43,7 +43,7 @@ const MyNFTs = () => {
   }, []);
 
   return (
-    <div id="#nfts" className="bg-black/10">
+    <div id="#nfts" className="bg-black/10 z-40">
       {loading ? (
         <div className="flex justify-center items-center h-2">
           <div className="loader"></div>

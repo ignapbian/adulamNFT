@@ -23,7 +23,7 @@ const Hero = () => {
 
   return (
     <div
-      className="relative h-screen w-full bg-no-repeat bg-center bg-fixed bg-cover"
+      className="relative min-h-screen flex flex-col justify-between bg-no-repeat bg-center bg-fixed bg-cover"
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -55,9 +55,9 @@ const Hero = () => {
             <li>- A stake in a community that values independence, prosperity, and social impact.</li>
             <li>- Opportunities for future rewards and exclusive access to new collections and events.</li>
           </ul>
-          <MyNFTs />
         </div>
       </div>
+      <MyNFTs />
     </div>
   )
 }
