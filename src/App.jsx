@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { useGlobalState } from './store'
 import { isWalletConnected, loadNfts } from './Adulam'
@@ -7,6 +8,8 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Loading from './components/Loading'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import AboutUs from './components/AboutUs'
 
 const App = () => {
   const [nfts] = useGlobalState('nfts')
@@ -22,24 +25,14 @@ const App = () => {
   }, [])
 
   return (
-    <div className="min-h-screen">
-      {loading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div className="loader"></div>
-        </div>
-      ) : (
-        <>
-          <div className="gradient-bg-hero">
-            <Header />
-            <Hero />
-          </div>
-          <MyNFTs />
-          <Footer />
-          <Loading />
-          <Alert />
-        </>
-      )}
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
+      <Footer />
+    </Router>
   )
 }
 
