@@ -18,10 +18,8 @@ const MyNFTs = () => {
         for (let i = 0; i < 20; i++) {
           try {
             const tokenURI = await contract.tokenURI(i);
-            console.log(`📦 Token #${i} URI:`, tokenURI);
             const response = await fetch(tokenURI.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"));
             const metadata = await response.json();
-            console.log(`🧾 Metadata #${i}:`, metadata);
             items.push({
               tokenId: i,
               image: metadata.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/"),
