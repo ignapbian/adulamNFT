@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ethlogo from "../assets/ethlogo.png";
-import { connectWallet } from "../Adulam";
+import { connectWallet } from "../BlockBrothers";
 import { truncate, useGlobalState } from "../store";
 
 const Header = () => {

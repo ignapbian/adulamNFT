@@ -4,8 +4,8 @@ Read the full tutorial here: [**>> How To Build A Classic Web3 NFT Minting Dapp 
 
 This example shows How To Build A Classic Web3 NFT Minting Dapp with React and Solidity:
 
-![Adulam NFT Project](./screenshots/Adulam.gif)
-<center><figcaption>Adulam NFT Project</figcaption></center>
+![BlockBrothers NFT Project](./screenshots/BlockBrothers.gif)
+<center><figcaption>BlockBrothers NFT Project</figcaption></center>
 
 ## Technology
 
@@ -56,4 +56,4 @@ Questions about running the demo? [Open an issue](https://github.com/Daltonic/Ad
 - 🐻 [Solidity](https://soliditylang.org/)
 - 👀 [Ethersjs](https://docs.ethers.io/v5/)
 - 🎅 [Faucet](https://faucets.chain.link/rinkeby)
-- ✨ [Live Demo](https://Adulam-nft.web.app/)
+- ✨ [Live Demo](https://BlockBrothers-nft.web.app/)

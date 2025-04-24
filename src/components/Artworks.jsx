@@ -37,12 +37,12 @@ const Artworks = ({ artworks }) => {
                   flex flex-row justify-between items-center
                   label-gradient p-2 w-full text-white text-sm"
               >
-                <p>{`Adulam NFT #${nft.id}`}</p>
+                <p>{`BlockBrothers NFT #${nft.id}`}</p>
                 <div className="flex justify-center items-center space-x-2">
                   <img
                     className="w-5 cursor-pointer"
                     src={ethlogo}
-                    alt={`Adulam NFT collection #` + nft.id}
+                    alt={`BlockBrothers NFT collection #` + nft.id}
                   />
                   {nft.cost}
                 </div>

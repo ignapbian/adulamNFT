@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useGlobalState } from './store'
-import { isWalletConnected, loadNfts } from './Adulam'
+import { isWalletConnected, loadNfts } from './BlockBrothers'
 import Alert from './components/Alert'
 import MyNFTs from './components/myNFTS'
 import Footer from './components/Footer'
